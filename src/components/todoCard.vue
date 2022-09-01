@@ -1,6 +1,6 @@
 <template>
 
-        
+        <h2 v-if="cards.length <= 0"> Ваш список дел пуст, создайте задачу </h2>
     <div class="todo__card">
         <div class="card">
             <div class="card__content" v-for="card in cards" :key='card.id'>
@@ -16,7 +16,12 @@
                 </div>
                 <div class="card__content__buttons">
                     <a class="button touch delete"></a>
-                    <button class="edit">Редактировать</button>
+                    
+                    <router-link
+                    :to='`/edit/${card.id}`'
+                    >
+                        <button class="edit">Редактировать</button>
+                    </router-link>
                     <button class="delete" @click="openModal(card.id)">Удалить</button>
                 </div>
             </div>
@@ -42,7 +47,7 @@
 import Modal from '@/components/Modal.vue'
 export default {
 props: ["cards"],
-emits:['load', 'deleteCard'],
+emits:['load', 'deleteCard', 'edit'],
 data(){
     return{
         showModal: false,
@@ -55,9 +60,15 @@ data(){
     },
     methods:{
         openModal(idx){
-            console.log(idx)
             this.indexOfCard = idx
             this.showModal = true
+        },
+       
+    },
+    computed:{
+         editCard(){
+           return  `/edit/${i}`
+           
         }
     }
 }

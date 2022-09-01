@@ -54,7 +54,6 @@ export default {
     },
     async deleteCard(id){
             try {
-            const name = this.cards.find((card) => card.id === id).cardName;
             await axios.delete(
             `https://todo-mkion-default-rtdb.europe-west1.firebasedatabase.app/todoCards/${id}.json`
             );
@@ -66,7 +65,7 @@ export default {
   },
   mounted(){
     this.loadCards();
-  }
+  },
 
 }
 </script>

@@ -63,7 +63,6 @@
       </template>
       <template #body>
         <h4>Вы уверены, что хотите отменить все внесенные измнения?</h4>
-        <h5>Вы будете перенаправлены на главную страницу</h5>
         <hr/>
       </template>
     </modal>
@@ -120,7 +119,7 @@ export default {
     deleteInput(id){
         // deleting item from array
 
-        this.inputs.splice(id, 1)
+        this.inputs = this.inputs.filter((input) => input.inpid !== id)
     },
 
     unfocus(c){
